@@ -1,6 +1,6 @@
-# create-leader - 领导.skill 创建器
+# create-leader - 领导.skill 创建器 | Leader Skill Creator
 
-Create a Leader AI Skill with Leadership Simulation, Upward Management, and Replacement Path Planning.
+Create a Leader AI Skill with Leadership Simulation, Upward Management, and Replacement Path Planning. 一个用于创建领导AI技能的OpenClaw skill，支持领导力模拟、向上管理、取代路径规划，帮助你理解领导、搞定老板、规划职业发展。
 
 ## 语言 / Language
 

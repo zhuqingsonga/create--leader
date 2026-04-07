@@ -1,8 +1,8 @@
 ---
 name: create-leader
-description: "Distill a leader into an AI Skill. Auto-collect Feishu/DingTalk data, generate Leadership Style + Upward Management + Replacement Path Planning. | 把领导蒸馏成 AI Skill，自动采集飞书/钉钉数据，生成领导风格 + 向上管理 + 取代路径规划。"
+description: "Create a leader AI skill, distill leadership style from workplace data, simulate leader decision-making, provide upward management advice, plan career advancement paths, help understand how to replace a leader, analyze leader weaknesses, build leadership capabilities, career strategy, promotion planning, boss simulation, manager skill creation, leadership analysis, upward communication guidance, career development, workplace strategy | 创建领导AI技能，从职场数据中蒸馏领导风格，模拟领导决策，提供向上管理建议，规划职业发展路径，帮助理解如何取代领导，分析领导弱点，构建领导能力，职业策略，晋升规划，老板模拟，经理技能创建，领导力分析，向上沟通指导，职业发展，职场策略，怎么和领导相处，怎么搞定老板，如何替代领导，怎么取代上级，领导模拟器，老板模拟器，创建领导skill，领导skill生成器，向上管理助手，取代路径规划"
 argument-hint: "[leader-name-or-slug]"
-version: "1.0.0"
+version: "1.1.0"
 user-invocable: true
 allowed-tools: Read, Write, Edit, Bash
 ---
@@ -27,11 +27,32 @@ This skill supports both English and Chinese. Detect the user's language from th
 - "我想蒸馏一个领导"
 - "新建领导"
 - "给我做一个 XX 领导的 skill"
+- "我想创建一个领导skill"
+- "帮我做一个老板的skill"
+- "我想要一个领导模拟器"
+- "怎么创建领导skill"
+- "我需要一个向上管理助手"
+- "帮我分析一下我的领导"
+- "我想知道怎么取代这个领导"
+- "如何替代我的上级"
+- "创建一个经理skill"
+- "领导skill生成器"
+- "老板模拟器"
+- "职场策略助手"
+- "晋升规划"
+- "职业发展路径"
+- "怎么和领导相处"
+- "怎么搞定老板"
+- "领导分析"
+- "向上沟通指导"
 
 当用户对已有领导 Skill 说以下内容时，进入进化模式：
 - "我有新文件" / "追加"
 - "这不对" / "他不会这样" / "他应该是"
 - /update-leader {slug}
+- "更新一下这个领导skill"
+- "我有新信息要补充"
+- "这个领导不是这样的"
 
 当用户说 /list-leaders 时列出所有已生成的领导。
 
@@ -332,11 +353,32 @@ Activate when the user says any of the following:
 - "I want to distill a leader"
 - "New leader"
 - "Make a skill for XX leader"
+- "I want to create a leader skill"
+- "Help me make a boss skill"
+- "I want a leader simulator"
+- "How to create a leader skill"
+- "I need an upward management assistant"
+- "Help me analyze my manager"
+- "I want to know how to replace this leader"
+- "How to take my boss's position"
+- "Create a manager skill"
+- "Leader skill generator"
+- "Boss simulator"
+- "Workplace strategy assistant"
+- "Promotion planning"
+- "Career development path"
+- "How to work with my boss"
+- "How to handle my manager"
+- "Leadership analysis"
+- "Upward communication guide"
 
 Enter evolution mode when the user says:
 - "I have new files" / "append"
 - "That's wrong" / "He wouldn't do that" / "He should be"
 - /update-leader {slug}
+- "Update this leader skill"
+- "I have new information to add"
+- "This leader isn't like that"
 
 List all generated leaders when the user says /list-leaders.
 
