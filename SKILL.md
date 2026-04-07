@@ -9,13 +9,17 @@ allowed-tools: Read, Write, Edit, Bash
 
 # create-leader - 领导.skill 创建器
 
-## 语言 / Language
+## Language / 语言
 
-本 Skill 支持中英文。根据用户第一条消息的语言，全程使用同一语言回复。
+This skill supports both English and Chinese. Detect the user's language from their first message and respond in the same language throughout. Below are instructions in both languages — follow the one matching the user's language.
+
+本 Skill 支持中英文。根据用户第一条消息的语言，全程使用同一语言回复。下方提供了两种语言的指令，按用户语言选择对应版本执行。
 
 ---
 
-## 触发条件
+## 中文版 (Chinese Version)
+
+### 触发条件
 
 当用户说以下任意内容时启动：
 - /create-leader
@@ -33,7 +37,7 @@ allowed-tools: Read, Write, Edit, Bash
 
 ---
 
-## 核心场景设计
+### 核心场景设计
 
 本 Skill 生成三轨结构：
 
@@ -52,9 +56,9 @@ allowed-tools: Read, Write, Edit, Bash
 
 ---
 
-## 主流程：创建新领导 Skill
+### 主流程：创建新领导 Skill
 
-### Step 1：基础信息录入（4个问题）
+#### Step 1：基础信息录入（4个问题）
 
 只问 4 个问题：
 
@@ -70,7 +74,7 @@ allowed-tools: Read, Write, Edit, Bash
 
 ---
 
-### Step 2：原材料导入
+#### Step 2：原材料导入
 
 询问用户提供原材料，展示五种方式供选择：
 
@@ -116,7 +120,7 @@ python3 ${SKILL_DIR}/tools/feishu_auto_collector.py \
 私聊采集（需要 user_access_token）：
 - 参考 prompts/feishu_private_chat.md 完整流程
 
-**重点采集内容**（与同事.skill不同）：
+**重点采集内容**：
 - 他在群聊中的决策过程
 - 他给下属的反馈和批评
 - 他在周报/月报中的表述
@@ -127,7 +131,7 @@ python3 ${SKILL_DIR}/tools/feishu_auto_collector.py \
 
 ---
 
-### Step 3：分析原材料
+#### Step 3：分析原材料
 
 将收集到的所有原材料和用户填写的基础信息汇总，按三条线分析：
 
@@ -142,13 +146,13 @@ python3 ${SKILL_DIR}/tools/feishu_auto_collector.py \
 - 重点分析：怎么跟他汇报他才听？他讨厌什么样的人？
 
 **线路 C（取代路径规划）**：
-- 参考 prompts/replacement_analyzer.md（新增）
+- 参考 prompts/replacement_analyzer.md
 - 提取：能力缺口、软肋分析、晋升路径、竞争对手分析
 - 重点分析：他的软肋是什么？你需要具备什么能力？
 
 ---
 
-### Step 4：生成并预览
+#### Step 4：生成并预览
 
 向用户展示三个部分的摘要（各 5-8 行），询问：
 
@@ -176,7 +180,7 @@ python3 ${SKILL_DIR}/tools/feishu_auto_collector.py \
 
 ---
 
-### Step 5：写入文件
+#### Step 5：写入文件
 
 用户确认后，执行以下写入操作：
 
@@ -205,36 +209,36 @@ mkdir -p leaders/{slug}/knowledge/meetings
 
 ---
 
-## SKILL.md 结构
+### 生成的 SKILL.md 结构
 
 ```yaml
 ---
 name: leader-{slug}
-description: {name}，{company} {level} {role}
+description: {name}, {company} {level} {role}
 user-invocable: true
 ---
 
 # {name}
 
-{company} {level} {role}{如有性别、年龄、MBTI则附上}
+{company} {level} {role}{append gender, age, MBTI if available}
 
 ---
 
 ## PART A：领导力模拟
 
-{leadership.md 全部内容}
+{full leadership.md content}
 
 ---
 
 ## PART B：向上管理
 
-{upward.md 全部内容}
+{full upward.md content}
 
 ---
 
 ## PART C：取代路径规划
 
-{replacement.md 全部内容}
+{full replacement.md content}
 
 ---
 
@@ -264,9 +268,9 @@ user-invocable: true
 
 ---
 
-## 进化模式
+### 进化模式
 
-### 追加文件
+#### 追加文件
 当用户提供新文件或文本时：
 - 按 Step 2 的方式读取新内容
 - 用 Read 读取现有 leaders/{slug}/ 下的三个文件
@@ -276,7 +280,7 @@ user-invocable: true
 - 重新生成 SKILL.md
 - 更新 meta.json
 
-### 对话纠正
+#### 对话纠正
 当用户表达"不对"/"应该是"时：
 - 参考 prompts/correction_handler.md 识别纠正内容
 - 判断属于 Leadership（领导风格）、Upward（向上管理）还是 Replacement（取代路径）
@@ -286,7 +290,7 @@ user-invocable: true
 
 ---
 
-## 管理命令
+### 管理命令
 
 /list-leaders：
 ```bash
@@ -306,10 +310,315 @@ rm -rf leaders/{slug}
 
 ---
 
-## 重要提示
+### 重要提示
 
 ⚠️ **伦理提醒**：
 - 本 Skill 仅用于学习和提升自己，请勿用于恶意目的
 - "取代路径规划"旨在帮助你理解领导的能力模型和你的成长方向
 - 建议通过正当的能力提升和业绩表现来获得职业发展
 - 尊重他人，不要传播负面信息
+
+---
+
+---
+
+## English Version
+
+### Trigger Conditions
+
+Activate when the user says any of the following:
+- /create-leader
+- "Help me create a leader skill"
+- "I want to distill a leader"
+- "New leader"
+- "Make a skill for XX leader"
+
+Enter evolution mode when the user says:
+- "I have new files" / "append"
+- "That's wrong" / "He wouldn't do that" / "He should be"
+- /update-leader {slug}
+
+List all generated leaders when the user says /list-leaders.
+
+---
+
+### Core Scenarios
+
+This skill generates a three-track structure:
+
+**Track 1: Leadership Simulation**
+- "If this leader were here, how would he decide?"
+- "What would this leader say in this scenario?"
+
+**Track 2: Upward Management Assistance**
+- "How should I report to this leader?"
+- "How to convince this leader of this proposal?"
+
+**Track 3: Replacement Path Planning (Core Differentiator)**
+- "How can I replace this leader?"
+- "What are this leader's weaknesses?"
+- "What capabilities do I need to take this position?"
+
+---
+
+### Main Flow: Create a New Leader Skill
+
+#### Step 1: Basic Information Collection (4 questions)
+
+Only ask 4 questions:
+
+1. **Alias / Codename (required)**
+2. **Basic info (one sentence)**: Company, level, role, gender, age
+   - Example: ByteDance L2-2 Engineering Director Male 35
+3. **Leadership style tags (one sentence)**: MBTI, management style, core traits, corporate culture tags
+   - Example: ENTJ Leo control-oriented results-driven promises a lot moody
+4. **Your relationship (one sentence)**: Your position, reporting line, what you want from this skill
+   - Example: I'm his subordinate, want to know how to work with him/how to replace him
+
+Everything except the alias can be skipped. Summarize and confirm before moving to the next step.
+
+---
+
+#### Step 2: Source Material Import
+
+Ask the user how they'd like to provide materials:
+
+```
+How would you like to provide source materials?
+
+  [A] Feishu Auto-Collect (Recommended)
+      Enter name, auto-pull messages + docs + meeting notes + weekly reports
+
+  [B] DingTalk Auto-Collect
+      Enter name, auto-pull docs + meeting notes
+
+  [C] Feishu/DingTalk Links
+      Provide doc/wiki/meeting note links directly
+
+  [D] Upload Files
+      PDF / images / exported JSON / emails
+
+  [E] Paste Text
+      Copy-paste his speeches, emails, meeting notes
+```
+
+Can mix and match, or skip entirely (generate from manual info only).
+
+---
+
+#### Option A: Feishu Auto-Collect (Recommended)
+
+First-time setup:
+```bash
+python3 ${SKILL_DIR}/tools/feishu_auto_collector.py --setup
+```
+
+Group chat collection:
+```bash
+python3 ${SKILL_DIR}/tools/feishu_auto_collector.py \
+  --name "{name}" \
+  --output-dir ./knowledge/{slug} \
+  --msg-limit 2000 \
+  --doc-limit 30
+```
+
+Private chat collection (requires user_access_token):
+- See prompts/feishu_private_chat.md for complete flow
+
+**Key Collection Content**:
+- His decision-making process in group chats
+- His feedback and criticism to subordinates
+- His statements in weekly/monthly reports
+- His promotion trajectory and past achievements
+- How he interacts with superiors
+- His questions and focus points in meetings
+- His hiring preferences and promotion criteria
+
+---
+
+#### Step 3: Analyze Source Materials
+
+Combine all collected materials and user-provided info, analyze along three tracks:
+
+**Track A (Leadership Simulation)**:
+- Refer to prompts/leadership_analyzer.md
+- Extract: decision patterns, communication style, hiring preferences, risk tolerance
+- Key analysis: How does he make decisions? What kind of subordinates does he like?
+
+**Track B (Upward Management)**:
+- Refer to prompts/upward_analyzer.md
+- Extract: reporting preferences, persuasion methods, minefield avoidance
+- Key analysis: How to report so he listens? What kind of people does he hate?
+
+**Track C (Replacement Path Planning)**:
+- Refer to prompts/replacement_analyzer.md
+- Extract: capability gaps, weakness analysis, promotion path, competitor analysis
+- Key analysis: What are his weaknesses? What capabilities do you need?
+
+---
+
+#### Step 4: Generate and Preview
+
+Show the user a summary of the three parts (5-8 lines each), ask:
+
+```
+Leadership Simulation Summary:
+  - Decision style: {xxx}
+  - Hiring preferences: {xxx}
+  - Communication style: {xxx}
+  ...
+
+Upward Management Summary:
+  - Reporting techniques: {xxx}
+  - Persuasion methods: {xxx}
+  - Minefield avoidance: {xxx}
+  ...
+
+Replacement Path Planning Summary:
+  - His weaknesses: {xxx}
+  - Your gaps: {xxx}
+  - Key breakthrough points: {xxx}
+  ...
+```
+
+Confirm generation? Or need adjustments?
+
+---
+
+#### Step 5: Write Files
+
+After user confirmation, execute the following:
+
+1. Create directory structure (Bash):
+```bash
+mkdir -p leaders/{slug}/versions
+mkdir -p leaders/{slug}/knowledge/docs
+mkdir -p leaders/{slug}/knowledge/messages
+mkdir -p leaders/{slug}/knowledge/meetings
+```
+
+2. Write leadership.md (Write tool):
+Path: leaders/{slug}/leadership.md
+
+3. Write upward.md (Write tool):
+Path: leaders/{slug}/upward.md
+
+4. Write replacement.md (Write tool):
+Path: leaders/{slug}/replacement.md
+
+5. Write meta.json (Write tool):
+Path: leaders/{slug}/meta.json
+
+6. Generate full SKILL.md (Write tool):
+Path: leaders/{slug}/SKILL.md
+
+---
+
+### Generated SKILL.md Structure
+
+```yaml
+---
+name: leader-{slug}
+description: {name}, {company} {level} {role}
+user-invocable: true
+---
+
+# {name}
+
+{company} {level} {role}{append gender, age, MBTI if available}
+
+---
+
+## PART A: Leadership Simulation
+
+{full leadership.md content}
+
+---
+
+## PART B: Upward Management
+
+{full upward.md content}
+
+---
+
+## PART C: Replacement Path Planning
+
+{full replacement.md content}
+
+---
+
+## Execution Rules
+
+1. PART A decides first: How would this leader view this problem?
+2. PART B executes: How should you communicate with him?
+3. If user asks "how to replace", activate PART C: Replacement Path Planning
+4. Always maintain an objective, professional analytical tone in output
+5. PART C rules have highest priority: When user asks replacement-related questions, must call PART C
+```
+
+Inform the user:
+
+```
+✅ Leader Skill created!
+
+Location: leaders/{slug}/
+Commands:
+  /{slug} (full version)
+  /{slug}-leadership (leadership simulation only)
+  /{slug}-upward (upward management only)
+  /{slug}-replacement (replacement path planning only)
+
+If something feels off, just say "he wouldn't do that" and I'll update it.
+```
+
+---
+
+### Evolution Mode
+
+#### Append Files
+When user provides new files or text:
+- Read new content using Step 2 methods
+- Read existing three files under leaders/{slug}/ with Read
+- Refer to prompts/merger.md for incremental analysis
+- Archive current version
+- Use Edit tool to append incremental content to relevant files
+- Regenerate SKILL.md
+- Update meta.json
+
+#### Conversation Correction
+When user expresses "that's wrong" / "he should be":
+- Refer to prompts/correction_handler.md to identify correction content
+- Determine if it belongs to Leadership, Upward, or Replacement
+- Generate correction record
+- Use Edit tool to append to ## Correction Log section of relevant file
+- Regenerate SKILL.md
+
+---
+
+### Management Commands
+
+/list-leaders:
+```bash
+python3 ${SKILL_DIR}/tools/skill_writer.py --action list --base-dir ./leaders
+```
+
+/leader-rollback {slug} {version}:
+```bash
+python3 ${SKILL_DIR}/tools/version_manager.py --action rollback --slug {slug} --version {version} --base-dir ./leaders
+```
+
+/delete-leader {slug}:
+After confirmation:
+```bash
+rm -rf leaders/{slug}
+```
+
+---
+
+### Important Note
+
+⚠️ **Ethical Reminder**:
+- This skill is for learning and self-improvement only, do not use for malicious purposes
+- "Replacement Path Planning" is designed to help you understand the leader's capability model and your growth direction
+- Career advancement through legitimate capability improvement and performance is recommended
+- Respect others, do not spread negative information
