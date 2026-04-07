@@ -50,11 +50,23 @@ This skill supports both English and Chinese. Detect the user's language from th
 create-leader/
 ├── SKILL.md (主文件 / Main file)
 ├── README.md (本文件 / This file)
-└── prompts/
-    ├── intake.md (基础信息录入 / Basic info collection)
-    ├── leadership_analyzer.md (领导力模拟分析 / Leadership simulation analysis)
-    ├── upward_analyzer.md (向上管理分析 / Upward management analysis)
-    └── replacement_analyzer.md (取代路径规划分析 / Replacement path planning analysis)
+├── _meta.json (Skill元数据 / Skill metadata)
+├── examples/
+│   └── EXAMPLE.md (使用示例 / Usage examples)
+├── prompts/
+│   ├── intake.md (基础信息录入 / Basic info collection)
+│   ├── leadership_analyzer.md (领导力模拟分析 / Leadership simulation analysis)
+│   ├── upward_analyzer.md (向上管理分析 / Upward management analysis)
+│   ├── replacement_analyzer.md (取代路径规划分析 / Replacement path planning analysis)
+│   ├── feishu_private_chat.md (飞书私聊采集 / Feishu private chat collection)
+│   ├── merger.md (增量内容合并 / Incremental content merging)
+│   ├── correction_handler.md (对话纠正处理 / Conversation correction handling)
+│   ├── work_builder.md (领导能力生成 / Leadership content builder)
+│   └── persona_builder.md (人物性格生成 / Persona content builder)
+└── tools/
+    ├── skill_writer.py (Skill文件写入 / Skill file writer)
+    ├── version_manager.py (版本管理 / Version manager)
+    └── feishu_auto_collector.py (飞书自动采集 / Feishu auto collector)
 ```
 
 ---

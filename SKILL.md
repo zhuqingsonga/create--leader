@@ -331,13 +331,31 @@ rm -rf leaders/{slug}
 
 ---
 
-### 重要提示
+### 重要提示与伦理准则
+
+⚠️ **使用边界声明**：
+- 本 Skill 仅用于个人学习、自我提升和职业发展辅助
+- 所有分析和建议仅供参考，不构成职业决策的唯一依据
+- 用户需对使用本 Skill 产生的所有后果负责
 
 ⚠️ **伦理提醒**：
-- 本 Skill 仅用于学习和提升自己，请勿用于恶意目的
 - "取代路径规划"旨在帮助你理解领导的能力模型和你的成长方向
-- 建议通过正当的能力提升和业绩表现来获得职业发展
-- 尊重他人，不要传播负面信息
+- 建议通过正当的能力提升、业绩表现和团队贡献来获得职业发展
+- 尊重他人的隐私权和名誉权，不要传播未经证实的负面信息
+- 不要使用本 Skill 进行恶意攻击、造谣中伤或其他不当行为
+- 职业竞争应建立在公平、透明、合法的基础上
+
+⚠️ **数据安全与隐私**：
+- 仅收集和使用你有权限访问的数据
+- 妥善保管飞书/钉钉等平台的凭证，不要泄露给他人
+- Token和配置文件存储在本地（~/.create-leader/），使用后可自行清理
+- 如停止使用本 Skill，建议删除相关配置和数据文件
+
+⚠️ **法律责任声明**：
+- 本 Skill 的开发者不对用户的使用方式和后果承担责任
+- 用户需确保使用本 Skill 符合所在国家/地区的法律法规
+- 用户需确保遵守所在公司的规章制度和数据安全政策
+- 如对使用边界有疑问，建议咨询专业法律或人力资源顾问
 
 ---
 
@@ -657,10 +675,28 @@ rm -rf leaders/{slug}
 
 ---
 
-### Important Note
+### Important Notes & Ethical Guidelines
+
+⚠️ **Usage Boundaries**:
+- This skill is for personal learning, self-improvement, and career development assistance only
+- All analysis and recommendations are for reference only and do not constitute the sole basis for career decisions
+- Users are solely responsible for all consequences of using this skill
 
 ⚠️ **Ethical Reminder**:
-- This skill is for learning and self-improvement only, do not use for malicious purposes
 - "Replacement Path Planning" is designed to help you understand the leader's capability model and your growth direction
-- Career advancement through legitimate capability improvement and performance is recommended
-- Respect others, do not spread negative information
+- Career advancement through legitimate capability improvement, performance, and team contribution is recommended
+- Respect others' privacy and reputation, do not spread unsubstantiated negative information
+- Do not use this skill for malicious attacks, defamation, or other inappropriate behavior
+- Career competition should be based on fair, transparent, and legal principles
+
+⚠️ **Data Security & Privacy**:
+- Only collect and use data you have permission to access
+- Safeguard Feishu/DingTalk and other platform credentials, do not disclose to others
+- Tokens and config files are stored locally (~/.create-leader/), you can clean them up after use
+- If you stop using this skill, it is recommended to delete related configs and data files
+
+⚠️ **Legal Liability Disclaimer**:
+- The developer of this skill is not responsible for how users use it or the consequences
+- Users must ensure use of this skill complies with laws and regulations in their country/region
+- Users must ensure compliance with their company's policies and data security rules
+- If in doubt about usage boundaries, consult professional legal or HR advisors
